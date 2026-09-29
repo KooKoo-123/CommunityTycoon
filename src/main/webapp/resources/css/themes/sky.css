@@ -1,0 +1,548 @@
+/* 두 테마가 공유하는 기본값. forest.css에서 필요한 색상만 변경합니다. */
+.attachment-box, .post-image-preview { background: var(--card-background); border: 2px solid var(--card-border); border-radius: 12px; }
+.post-image-preview { box-shadow: 0 6px 20px #30466b33; }
+:root {
+    --profile-border: #91a9cf;
+    --card-border: #a2b8dc;
+    --card-background: #f5f8ff;
+}
+
+body {
+    color: var(--game-ink);
+    background: #edf4ff;
+}
+
+a {
+    color: inherit;
+}
+
+.hud-logout {
+    border-left: 1px solid #b3c4e1;
+}
+
+.hud-logout button {
+    border: 0;
+    background: none;
+}
+
+.site-canvas {
+    background: white;
+}
+
+.hello-site {
+    color: black;
+}
+
+.build-close {
+    border: 0;
+}
+
+.build-icon {
+    border-radius: 5px;
+}
+
+.play-demo {
+    color: #7a8ca6;
+}
+
+.live-board-heading p {
+    color: #7a8ca6;
+}
+
+.live-board-table {
+    --bs-table-bg: transparent;
+}
+
+.live-board-empty {
+    color: #7a8ca6;
+}
+
+.row-actions button {
+    background: none;
+    border: 0;
+    color: #bc6666;
+}
+
+.eyebrow {
+    color: #7890b0;
+}
+
+.back-link {
+    color: #6b809d;
+}
+
+.author-tag {
+    background: #e9edff;
+    color: #6c70a0;
+}
+
+.author-tag.player {
+    background: #dff3ec;
+    color: #497b6f;
+}
+
+.profile-image-fallback {
+    border-radius: 50%;
+    background: #e6edff;
+}
+
+.comment-actions summary {
+    color: #6484aa;
+}
+
+.comment-empty {
+    color: #7890b0;
+}
+
+.btn-danger-soft {
+    color: #b05265 !important;
+    background: #ffe4e9 !important;
+}
+
+.title-menu .notice.error {
+    border-color: #efb5a3;
+}
+
+@media (max-width: 700px) {
+    .hud-logout {
+        border: 0;
+    }
+}
+
+:root {
+    --game-ink: #30466b;
+    --game-blue: #c4e8ff;
+    --game-cream: #fff8e7;
+    --game-shadow: #8ba1c5;
+}
+
+.tycoon-play {
+    color: var(--game-ink);
+    background: #edf4ff;
+}
+
+.tycoon-play .play-hud {
+    background: #dfedff;
+    border-bottom: 3px solid var(--game-ink);
+    box-shadow: 0 4px 0 #b6c9e7;
+}
+
+.tycoon-play .play-brand {
+    color: var(--game-ink);
+}
+
+.tycoon-play .play-brand > span {
+    background: none;
+    color: inherit;
+}
+
+.tycoon-play .hud-value {
+    background: #fffdf5;
+    border: 2px solid var(--profile-border);
+    border-radius: 8px;
+    box-shadow: 0 2px 0 #bbcae1;
+}
+
+.tycoon-play .hud-value span {
+    color: #64799e;
+}
+
+.tycoon-play .hud-value strong {
+    color: var(--game-ink);
+}
+
+.tycoon-play .hud-money {
+    background: #fff0ba;
+    border-color: #d9af54;
+}
+
+.tycoon-play .hud-visitors {
+    background: #e4ddff;
+    border-color: #b09bcf;
+}
+
+.tycoon-play .hud-shop,
+.tycoon-play .hud-save,
+.tycoon-play .site-button,
+.tycoon-play .build-buy,
+.tycoon-play .build-open {
+    border: 2px solid var(--game-ink);
+    border-radius: 7px;
+    color: var(--game-ink);
+    background: #d5eaff;
+    box-shadow: 0 3px 0 var(--game-ink), inset 0 2px 0 #ffffffa6;
+}
+
+.tycoon-play .btn {
+    border: 2px solid var(--game-ink);
+    border-radius: 7px;
+    color: var(--game-ink);
+    background: #d5eaff;
+    box-shadow: 0 3px 0 var(--game-ink), inset 0 2px 0 #ffffffa6;
+}
+
+.tycoon-play .hud-save,
+.tycoon-play .build-buy,
+.tycoon-play .site-button.primary {
+    background: #ffda85;
+}
+
+.tycoon-play button:hover:not(:disabled) {
+    filter: brightness(1.04);
+}
+
+.tycoon-play .site-button:hover {
+    filter: brightness(1.04);
+}
+
+.tycoon-play button:focus-visible,
+.tycoon-play a:focus-visible,
+.tycoon-play summary:focus-visible {
+    outline: 3px solid #438cff;
+    outline-offset: 4px;
+}
+
+.tycoon-play .hud-logout button {
+    color: #536a91;
+}
+
+.tycoon-play .build-dialog {
+    color: var(--game-ink);
+    border: 3px solid var(--game-ink);
+    border-radius: 14px;
+    background: #f5f7ff;
+    box-shadow: 6px 6px 0 #30466b66;
+}
+
+.tycoon-play .build-dialog::backdrop {
+    background: #182b4d66;
+}
+
+.tycoon-play .build-title {
+    border-bottom: 2px dashed #b3c2dd;
+}
+
+.tycoon-play .build-title h2 {
+    color: var(--game-ink);
+}
+
+.tycoon-play .build-close {
+    background: #ffd5dc;
+    border-radius: 5px;
+    color: var(--game-ink);
+}
+
+.tycoon-play .build-category {
+    background: #d6e9ff;
+    border: 2px solid #8da8cc;
+    border-radius: 7px;
+    color: var(--game-ink);
+}
+
+.tycoon-play .build-item {
+    background: var(--game-cream);
+    border: 2px solid #9eafd0;
+    border-radius: 10px;
+    box-shadow: 0 3px 0 #c4cfe4;
+}
+
+.tycoon-play .build-item h3 {
+    color: var(--game-ink);
+}
+
+.tycoon-play .build-icon {
+    color: #526ba2;
+    background: #e0eaff;
+    border: 2px solid #9db0d0;
+}
+
+.tycoon-play .build-status {
+    background: #e3eaff;
+    color: #5a6f98;
+    border-radius: 20px;
+}
+
+.tycoon-play .is-built .build-status {
+    background: #caefdf;
+    color: #3b786a;
+}
+
+.tycoon-play .build-item p,
+.tycoon-play .build-shortfall,
+.tycoon-play .build-price,
+.tycoon-play .build-footer {
+    color: #617394;
+}
+
+.tycoon-play .build-price strong {
+    color: #9e641b;
+}
+
+.tycoon-play .live-board-heading {
+    border-bottom: 3px solid #9cb5dc;
+}
+
+.tycoon-play .live-board-heading h1 {
+    color: var(--game-ink);
+}
+
+.tycoon-play .live-board-table thead {
+    background: #e6efff;
+}
+
+.tycoon-play .live-board-table th {
+    color: #526b95;
+}
+
+.tycoon-play .live-board-table tbody tr:hover {
+    background: #f4f8ff;
+}
+
+.tycoon-play .live-board-table a {
+    color: #38568b;
+}
+
+.tycoon-play .writer-label {
+    color: #7d6aa1;
+    background: #eee8ff;
+    border-radius: 5px;
+}
+
+.tycoon-play .panel {
+    border: 2px solid #b3c4e1;
+    box-shadow: 3px 3px 0 #dbe5f4;
+    border-radius: 12px;
+}
+
+.tycoon-play .comment-section {
+    border: 2px solid #b3c4e1;
+    box-shadow: 3px 3px 0 #dbe5f4;
+    border-radius: 12px;
+}
+
+.tycoon-play .form-control:focus,
+.tycoon-play textarea:focus {
+    border-color: #779adb;
+    outline: 2px solid #deebff;
+}
+
+.tycoon-play .play-notice {
+    background: #fff0bd;
+    color: #6d5427;
+    border: 2px solid #e3c47b;
+    border-radius: 8px;
+}
+
+body.game-title-screen .game-logo h1 {
+    text-shadow: 3px 0 var(--game-ink), -3px 0 var(--game-ink), 0 -3px var(--game-ink), 0 3px var(--game-ink), 4px 6px var(--game-ink);
+}
+
+body.game-title-screen .game-logo > div {
+    color: var(--game-ink);
+}
+
+body.game-title-screen .title-menu {
+    background: #fffaf0f5;
+    border: 3px solid var(--game-ink);
+    border-radius: 12px;
+    box-shadow: 5px 6px 0 var(--game-ink), inset 0 0 0 4px white;
+}
+
+body.game-title-screen .title-menu h2 {
+    color: var(--game-ink);
+}
+
+body.game-title-screen .title-menu label {
+    color: #506589;
+}
+
+body.game-title-screen .title-menu .form-control {
+    border: 2px solid #a9bdd9;
+    background: #f5f9ff;
+    color: var(--game-ink);
+}
+
+body.game-title-screen .title-menu .btn-primary {
+    background: #ffda85;
+    border: 2px solid var(--game-ink);
+    color: var(--game-ink);
+    box-shadow: 0 4px 0 var(--game-ink);
+}
+
+body.game-title-screen .title-menu .auth-bottom a {
+    background: #d7eaff;
+    border: 2px solid var(--game-ink);
+    border-radius: 5px;
+    color: var(--game-ink);
+    box-shadow: 0 2px 0 var(--game-ink);
+}
+
+body.game-title-screen .title-menu .title-description {
+    color: #6c7e9b;
+}
+
+.hud-profile {
+    color: inherit;
+}
+
+.profile-image {
+    border: 2px solid var(--profile-border);
+    border-radius: 9px;
+    background: #fff8e7;
+}
+
+.profile-portrait {
+    border: 3px solid var(--profile-border);
+    border-radius: 15px;
+    background: #f1f7ff;
+}
+
+.profile-page .card {
+    border: 2px solid var(--card-border);
+    border-radius: 16px;
+    box-shadow: 0 5px 0 #d2dff1;
+    color: var(--game-ink);
+}
+
+.manager-card {
+    background: #fffaf0;
+}
+
+.manager-card:hover {
+    border-color: #d9af54;
+}
+
+.manager-facts dt {
+    color: #596fa0;
+}
+
+.manager-quote {
+    border-top: 2px dashed var(--card-border);
+}
+
+.manager-toast {
+    border: 3px solid var(--game-ink);
+    border-radius: 14px;
+    background: #fff0ba;
+    color: var(--game-ink);
+    box-shadow: 0 5px 0 var(--profile-border);
+}
+
+#gold-box[role="button"]:focus-visible {
+    outline: 3px solid #438cff;
+}
+
+.post-attachment-image {
+    border-radius: 12px;
+}
+
+.attachment-thumb {
+    border: 2px solid var(--card-border);
+    border-radius: 12px;
+    background: var(--card-background);
+}
+
+.remove-button {
+    border: 2px solid #9b4e51;
+    border-radius: 50%;
+    background: #fff;
+    color: #9b4e51;
+}
+
+.profile-image-storage-choice {
+    border: 2px solid var(--card-border);
+    border-radius: 12px;
+    background: var(--card-background);
+}
+
+.profile-image-storage-choice img {
+    border-radius: 8px;
+}
+
+.profile-image-storage-choice.is-current {
+    border-color: #479c79;
+    background: #dff5e9;
+    color: #276345;
+}
+
+.game-title-screen {
+    color: #36443b;
+    background: #9bc9dc url('../../images/internet-village.png') center center / cover fixed no-repeat;
+}
+
+.game-logo>p {
+    color: #244757;
+}
+
+.game-logo h1 {
+    color: #fffbe6;
+    text-shadow: 3px 0 #385d55, -3px 0 #385d55, 0 -3px #385d55, 0 3px #385d55, 4px 6px #385d55, 5px 8px 0 #284339;
+}
+
+.game-logo h1 span {
+    color: #ffe297;
+}
+
+.game-logo>div {
+    color: #26463d;
+}
+
+.title-menu {
+    border: 3px solid #6c7657;
+    border-radius: 12px;
+    background: rgba(255, 251, 228, .96);
+    box-shadow: 0 5px 0 #425d4b, 0 12px 32px #22494340, inset 0 0 0 3px #fffef6;
+}
+
+.title-description {
+    color: #66715b;
+}
+
+.title-menu label {
+    color: #4b5843;
+}
+
+.title-menu .form-control {
+    color: #314238;
+    background: #fffdf4;
+    border: 2px solid #c5c7a8;
+    border-radius: 5px;
+}
+
+.title-menu .form-control:focus {
+    background: white;
+    color: #314238;
+    border-color: #64865a;
+    box-shadow: 0 0 0 3px #78985825;
+}
+
+.title-menu .btn-primary {
+    color: #fffce7;
+    background: #52784e;
+    border: 2px solid #35573b;
+    box-shadow: 0 3px 0 #35573b;
+    border-radius: 5px;
+}
+
+.title-menu .btn-primary:hover {
+    background: #416540;
+}
+
+.title-menu .auth-bottom {
+    color: #64705b;
+}
+
+.title-menu a {
+    color: #386447;
+}
+
+.title-menu .notice.error {
+    color: #8d3026;
+    background: #ffe8d9;
+}
+
+@media (max-width: 600px) {
+    .game-title-screen {
+        background-position: 48% center;
+    }
+}

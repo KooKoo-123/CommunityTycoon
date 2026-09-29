@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "http://apache.org">
+<log4j:configuration xmlns:log4j="http://apache.org">
+
+	<!-- 개발 서버의 로그 출력 대상과 형식을 설정합니다. -->
+
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p: %c - %m%n" />
+		</layout>
+	</appender>
+
+    <appender name="file" class="org.apache.log4j.DailyRollingFileAppender">
+
+        <param name="File" value="C:/logs/todo/spring_todo.log" />
+
+    	<param name="DatePattern" value="'.'yyyy-MM-dd" />
+
+    	<param name="MaxFileSize" value="10MB" />
+
+    	<param name="MaxBackupIndex" value="10" />
+
+        <param name="Append" value="true" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                   value="%d{yyyy-MM-dd HH:mm:ss} %-5p %c - %m%n" />
+        </layout>
+    </appender>	
+
+	<logger name="kr.or.oti.todo">
+		<level value="TRACE" />
+	</logger>
+
+	<logger name="org.springframework.core">
+		<level value="debug" />
+	</logger>
+
+	<logger name="org.springframework.beans">
+		<level value="debug" />
+	</logger>
+
+	<logger name="org.springframework.context">
+		<level value="debug" />
+	</logger>
+
+	<logger name="org.springframework.web">
+		<level value="debug" />
+	</logger>
+
+	<root>
+		<priority value="debug" />
+		<appender-ref ref="console" />
+		<appender-ref ref="file" />
+	</root>
+
+</log4j:configuration>

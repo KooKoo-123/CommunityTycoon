@@ -1,0 +1,82 @@
+/* 프로필·보관함·관리자 소개 배치 */
+.hud-profile {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.profile-image {
+    width: 34px;
+    height: 34px;
+    object-fit: cover;
+}
+
+.profile-portrait {
+    width: 86px;
+    height: 86px;
+    object-fit: contain;
+    padding: 6px;
+}
+
+.profile-page {
+    max-width: 1050px;
+}
+
+.profile-page h1 {
+    font-size: clamp(24px, 4vw, 34px);
+}
+
+.profile-page h2 {
+    font-size: 21px;
+}
+
+.manager-card {
+    text-align: center;
+    align-items: center;
+}
+
+.manager-portrait {
+    width: min(100%, 190px);
+    height: 165px;
+    object-fit: contain;
+    image-rendering: pixelated;
+}
+
+.manager-facts dt {
+    margin-top: 16px;
+}
+
+.manager-facts dd {
+    line-height: 1.8;
+}
+
+.manager-quote {
+    padding-top: 18px;
+    margin-top: 22px;
+}
+
+.profile-image-storage-choice {
+    display: grid;
+    gap: 6px;
+    padding: 8px;
+    font-size: 12px;
+}
+
+.profile-image-storage-choice img {
+    width: 86px;
+    height: 86px;
+    object-fit: contain;
+    padding: 6px;
+    image-rendering: pixelated;
+}
+
+@media (max-width: 700px) {
+    .hud-profile span {
+        max-width: 95px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}

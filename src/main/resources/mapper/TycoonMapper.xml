@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tycoon.community.tycoon.TycoonMapper">
+    <!-- 회원별 게임 상태와 프로필 정보를 저장·조회하는 SQL입니다. -->
+    <insert id="insert">
+        INSERT INTO ct_game_data(userId, userNickname, gold, traffic)
+        VALUES(#{userId}, #{userNickname}, 200, 0)
+    </insert>
+
+    <select id="findByUser" resultType="com.tycoon.community.tycoon.GameData">
+        SELECT *
+        FROM ct_game_data
+        WHERE userId = #{userId}
+    </select>
+    <update id="update">
+        UPDATE ct_game_data
+        SET `day` = #{day},
+            gold = #{gold},
+            traffic = #{traffic},
+            playSeconds = #{playSeconds},
+            hasBoard = #{hasBoard},
+            hasComments = #{hasComments},
+            hasMypage = #{hasMypage},
+            hasProfileImage = #{hasProfileImage},
+            hasAttachment = #{hasAttachment},
+            hasPaging = #{hasPaging},
+            hasSearch = #{hasSearch},
+            hasTheme = #{hasTheme},
+            hasProfileImageStorage = #{hasProfileImageStorage},
+            userTheme = #{userTheme},
+            userProfileImageId = #{userProfileImageId},
+            userNickname = #{userNickname}
+        WHERE gameDataId = #{gameDataId}
+    </update>
+    <update id="updateProfile">
+        UPDATE ct_game_data
+        SET userNickname = #{userNickname}, userTheme = #{userTheme}
+        WHERE userId = #{userId}
+    </update>
+    <update id="updateProfileImage">
+        UPDATE ct_game_data
+        SET userProfileImageId = #{userProfileImageId}
+        WHERE userId = #{userId}
+    </update>
+</mapper>

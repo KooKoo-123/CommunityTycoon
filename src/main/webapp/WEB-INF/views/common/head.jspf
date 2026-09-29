@@ -1,0 +1,32 @@
+<%-- 공통 CSS와 JS를 불러옵니다. defer 스크립트는 HTML 해석 후 선언 순서대로 실행되므로 데이터 → 타이머 → UI 순서가 중요합니다. --%>
+<%@ page pageEncoding="UTF-8" %>
+<%-- 공통 스타일. Bootstrap은 프로젝트 내부에 저장합니다. --%>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>커뮤니티 타이쿤 · 작은 사이트, 큰 이야기</title>
+<link rel="icon" type="image/png" href="<c:url value='/resources/images/cat.png'/>">
+<link rel="stylesheet" href="<c:url value='/resources/vendor/bootstrap.min.css'/>">
+<script>document.documentElement.dataset.theme = '${selectedTheme}' === 'forest' ? 'forest' : 'sky';</script>
+<link rel="stylesheet" href="<c:url value='/resources/css/common.css?v=features1'/>">
+<link rel="stylesheet" href="<c:url value='/resources/css/login.css?v=features1'/>">
+<link rel="stylesheet" href="<c:url value='/resources/css/tycoon.css?v=features2'/>">
+<link rel="stylesheet" href="<c:url value='/resources/css/board.css?v=features1'/>">
+<link rel="stylesheet" href="<c:url value='/resources/css/attachments.css?v=features1'/>">
+<link rel="stylesheet" href="<c:url value='/resources/css/profile.css?v=features3'/>">
+<link rel="stylesheet" href="<c:url value='/resources/css/themes/sky.css?v=features2'/>">
+<link rel="stylesheet" href="<c:url value='/resources/css/themes/forest.css?v=features1'/>">
+
+<%-- 상태 → 테마 데이터 → 통신 → 타이머/화면/연출 → 이동 및 시작 --%>
+<script defer src="<c:url value='/resources/js/common/form.js?v=features1'/>"></script>
+<script defer src="<c:url value='/resources/js/member/login.js?v=features1'/>"></script>
+<script defer src="<c:url value='/resources/js/tycoon/state.js?v=features1'/>"></script>
+<script defer src="<c:url value='/resources/js/tycoon/npc/sky.js?v=features1'/>"></script>
+<script defer src="<c:url value='/resources/js/tycoon/npc/forest.js?v=features1'/>"></script>
+<script defer src="<c:url value='/resources/js/tycoon/npc/select.js?v=features1'/>"></script>
+<script defer src="<c:url value='/resources/js/tycoon/api.js?v=features1'/>"></script>
+<script defer src="<c:url value='/resources/js/tycoon/loop.js?v=features1'/>"></script>
+<script defer src="<c:url value='/resources/js/tycoon/ui.js?v=features1'/>"></script>
+<script defer src="<c:url value='/resources/js/tycoon/manager.js?v=features1'/>"></script>
+<script defer src="<c:url value='/resources/js/board/attachments.js?v=features1'/>"></script>
+<script defer src="<c:url value='/resources/js/board/preview.js?v=features1'/>"></script>
+<script defer src="<c:url value='/resources/js/tycoon/navigation.js?v=features1'/>"></script>

@@ -1,0 +1,102 @@
+<%-- 공통 HUD와 기능 구매 창입니다. data 속성에 담은 서버 상태를 js/tycoon/state.js가 초기 JS 객체로 읽습니다. --%>
+<%@ page pageEncoding="UTF-8" %>
+<%-- DB 값을 data 속성에 넣으면 JS가 숫자/boolean으로 읽어 객체를 만듭니다. --%>
+<header id="game-state" class="play-hud d-flex align-items-center sticky-top"
+    data-gold="${site.gold}" data-traffic="${site.traffic}" data-day="${site.day}"
+    data-play-seconds="${site.playSeconds}"
+    data-board="${site.hasBoard}" data-comment="${site.hasComments}"
+    data-mypage="${site.hasMypage}" data-profile-image="${site.hasProfileImage}" data-attachment="${site.hasAttachment}" data-paging="${site.hasPaging}" data-search="${site.hasSearch}" data-theme="${site.hasTheme}" data-profile-image-storage="${site.hasProfileImageStorage}" data-admin="${currentMember.role == 'ADMIN'}"
+    data-board-price="${price}" data-comment-price="${commentPrice}"
+    data-root="${pageContext.request.contextPath}">
+    <a class="play-brand d-flex align-items-center text-decoration-none text-nowrap" href="<c:url value='/tycoon'/>">
+        <img class="hud-mascot" src="<c:url value='/resources/images/cat.png'/>" alt="고양이 로고">
+        <span>커뮤니티 타이쿤</span>
+    </a>
+    <button class="hud-shop btn btn-sm" id="open-build-panel" type="button"
+        aria-haspopup="dialog" aria-controls="build-dialog" aria-expanded="false">기능 구매</button>
+    <button id="feed-manager" class="hud-shop btn btn-sm" type="button">관리자 사료주기</button>
+    <div class="hud-controls d-flex align-items-center ms-auto">
+        <div class="hud-value d-flex align-items-center gap-2"><span>현재 날짜</span><strong id="hud-day">DAY ${site.day}</strong></div>
+        <div id="gold-box" role="${currentMember.role == 'ADMIN' ? 'button' : 'group'}" tabindex="${currentMember.role == 'ADMIN' ? '0' : '-1'}" aria-label="보유 골드${currentMember.role == 'ADMIN' ? ' · 관리자 보너스 1000 G' : ''}" class="hud-value hud-money d-flex align-items-center gap-2"><span>보유 골드</span><strong id="hud-gold">${site.gold} G</strong></div>
+        <div class="hud-value hud-visitors d-flex align-items-center gap-2"><span>현재 이용자 수</span><strong id="hud-traffic">${site.traffic} 명</strong></div>
+        <a class="hud-profile" href="<c:url value='/member/mypage'/>">
+            <c:choose><c:when test="${not empty site.userProfileImageUploadId}"><img class="profile-image" src="<c:url value='/files/${site.userProfileImageUploadId}'/>" alt="내 프로필"></c:when>
+            <c:otherwise><img class="profile-image" src="<c:url value='/resources/images/cat.png'/>" alt="내 프로필"></c:otherwise></c:choose>
+            <span><c:out value="${site.userNickname}"/>님</span>
+        </a>
+        <button id="save-game" class="hud-save btn btn-sm" type="button">게임 저장</button>
+    </div>
+    <%-- [입력 처리] action은 받을 서버 주소, method는 요청 방식입니다. name 값으로 Java 매개변수와 연결됩니다. --%>
+    <form class="hud-logout" action="<c:url value='/member/logout'/>" method="post">
+        <button type="submit">로그아웃</button>
+    </form>
+</header>
+<dialog class="build-panel build-dialog" id="build-dialog" aria-labelledby="build-dialog-title">
+    <div class="build-title d-flex align-items-center gap-2 mb-3">
+        <h2 id="build-dialog-title">기능 구매</h2>
+        <button class="build-close ms-auto" id="close-build-panel" type="button" aria-label="기능 구매 닫기">×</button>
+    </div>
+    <details class="facility-toggle">
+        <summary class="build-category">커뮤니티 시설 <span class="facility-closed">8개 · 펼치기</span><span class="facility-open">접기</span></summary>
+        <div class="facility-items">
+            <section class="build-item card p-3">
+                <h3>게시판</h3>
+                <p>NPC가 이야기를 남길 공간이에요.<br>NPC 글마다 +10 G · 이용자 +1</p>
+                <div class="build-price mb-2">구매 비용 <strong>${price} G</strong></div>
+                <button id="buy-board" data-module="board" data-price="${modulePrices.board}" data-label="게시판" class="build-buy btn w-100" type="button">게시판 구매</button>
+            </section>
+            <section class="build-item card p-3">
+                <h3>댓글</h3>
+                <p>대화가 생기면 이웃들도 신나요.<br>NPC 댓글마다 +3 G</p>
+                <div class="build-price mb-2">구매 비용 <strong>${commentPrice} G</strong></div>
+                <button id="buy-comment" data-module="comment" data-price="${modulePrices.comment}" data-label="댓글" class="build-buy btn w-100" type="button">댓글 구매</button>
+            </section>
+            <section class="build-item card p-3">
+                <h3>마이페이지</h3><p>닉네임과 내 프로필을 관리해요.</p>
+                <div class="build-price mb-2">구매 비용 <strong>${modulePrices.mypage} G</strong></div>
+                <button class="build-buy btn w-100" type="button" data-module="mypage" data-price="${modulePrices.mypage}" data-label="마이페이지">마이페이지 구매</button>
+            </section>
+            <section class="build-item card p-3">
+                <h3>프로필 사진</h3><p>나만의 프로필 사진을 꾸며봐요.</p>
+                <div class="build-price mb-2">구매 비용 <strong>${modulePrices.profileImage} G</strong></div>
+                <button class="build-buy btn w-100" type="button" data-module="profileImage" data-price="${modulePrices.profileImage}" data-label="프로필 사진">프로필 사진 구매</button>
+            </section>
+            <section class="build-item card p-3">
+                <h3>게시글 첨부파일</h3><p>글에 파일을 첨부하고 내려받아요.</p>
+                <div class="build-price mb-2">구매 비용 <strong>${modulePrices.attachment} G</strong></div>
+                <button class="build-buy btn w-100" type="button" data-module="attachment" data-price="${modulePrices.attachment}" data-label="게시글 첨부파일">게시글 첨부파일 구매</button>
+            </section>
+            <section class="build-item card p-3">
+                <h3>페이징</h3><p>게시글을 10개씩 나눠 봐요.</p>
+                <div class="build-price mb-2">구매 비용 <strong>${modulePrices.paging} G</strong></div>
+                <button class="build-buy btn w-100" type="button" data-module="paging" data-price="${modulePrices.paging}" data-label="페이징">페이징 구매</button>
+            </section>
+            <section class="build-item card p-3">
+                <h3>검색</h3><p>제목과 작성자로 이야기를 찾아요.</p>
+                <div class="build-price mb-2">구매 비용 <strong>${modulePrices.search} G</strong></div>
+                <button class="build-buy btn w-100" type="button" data-module="search" data-price="${modulePrices.search}" data-label="검색">검색 구매</button>
+            </section>
+            <section class="build-item card p-3">
+                <h3>프로필 보관함</h3><p>이전에 올린 사진을 다시 골라 사용해요.<br>프로필 사진 모듈 구매 후 이용할 수 있어요.</p>
+                <div class="build-price mb-2">구매 비용 <strong>${modulePrices.profileImageStorage} G</strong></div>
+                <button class="build-buy btn w-100" type="button" data-module="profileImageStorage" data-price="${modulePrices.profileImageStorage}" data-label="프로필 보관함">프로필 보관함 구매</button>
+            </section>
+        </div>
+    </details>
+    <details class="facility-toggle">
+        <summary class="build-category">테마 <span class="facility-closed">1개 · 펼치기</span><span class="facility-open">접기</span></summary>
+        <div class="facility-items">
+            <section class="build-item card p-3">
+                <h3>위스터리아 빌리지 테마</h3><p>Wisteria Village - 등나무 마을. 보랏빛 등나무와 폭포, 돌다리와 풍차 사이로 인간·엘프·드워프·고블린·오크·트롤·요정·수인이 이웃으로 살아갑니다. 술집의 외상 공지, 잡화점의 수상한 신상품, 여관의 분실물까지! 가게 주인과 여행자가 직접 글을 쓰고 댓글로 티격태격하는 마을 게시판을 만나 보세요. 마이페이지에서 적용하세요.</p>
+                <div class="build-price mb-2">구매 비용 <strong>${modulePrices.theme} G</strong></div>
+                <button class="build-buy btn w-100" type="button" data-module="theme" data-price="${modulePrices.theme}" data-label="위스터리아 빌리지 테마">위스터리아 빌리지 테마 구매</button>
+            </section>
+        </div>
+    </details>
+    <div class="build-footer d-flex justify-content-between mt-3"><span>설치된 기능</span><strong id="module-count"></strong></div>
+</dialog>
+<div id="manager-toast" class="manager-toast" role="status" hidden><img src="<c:url value='/resources/images/cat.png'/>" alt="행복한 관리자냥"><span id="manager-toast-text"></span></div>
+<div class="play-layout">
+    <div class="site-workspace">
+        <div id="game-message" class="small px-3 py-2 text-muted" role="status">DAY가 바뀌면 자동 저장됩니다. 구매·사료·NPC 활동도 즉시 저장해요.</div>
+        <div class="site-canvas">

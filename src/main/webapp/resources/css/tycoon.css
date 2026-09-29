@@ -1,0 +1,358 @@
+/* 게임 HUD·기능 구매 창·관리자 반응 배치 */
+.play-hud {
+    min-height: 65px;
+    z-index: 10;
+}
+
+.play-hud form {
+    margin: 0;
+}
+
+.hud-value {
+    font-size: 11px;
+}
+
+.hud-value strong {
+    font-variant-numeric: tabular-nums;
+}
+
+.hud-logout {
+    padding-left: 18px;
+}
+
+.hud-logout button {
+    font-size: 11px;
+}
+
+.site-workspace {
+    min-width: 0;
+}
+
+.site-canvas {
+    min-height: calc(100vh - 85px);
+    overflow: auto;
+}
+
+.play-notice {
+    padding: 10px 23px;
+    font-size: 12px;
+}
+
+.hello-site {
+    padding: 8px;
+    font-family: "Times New Roman", serif;
+}
+
+.hello-site h1 {
+    font-size: 32px;
+    font-weight: bold;
+    letter-spacing: normal;
+}
+
+.hello-site p {
+    font-size: 16px;
+    overflow-wrap: anywhere;
+}
+
+.build-dialog:not([open]) {
+    display: none;
+}
+
+.build-dialog[open] {
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    max-height: 88dvh;
+    overflow-y: auto;
+}
+
+.build-title h2 {
+    margin: 0;
+}
+
+.build-close {
+    font-size: 24px;
+    line-height: 1;
+    padding: 2px 6px;
+}
+
+.build-item + .build-item {
+    margin-top: 16px;
+}
+
+.build-icon {
+    display: grid;
+    place-items: center;
+    width: 43px;
+    height: 43px;
+    font-size: 29px;
+}
+
+.build-item h3 {
+    font-size: 15px;
+}
+
+.build-item p {
+    font-size: 11px;
+    line-height: 1.9;
+}
+
+.build-status,
+.build-shortfall {
+    font-size: 10px;
+}
+
+.build-price,
+.build-footer {
+    font-size: 11px;
+}
+
+.build-price strong {
+    font-size: 14px;
+}
+
+.build-buy:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+.play-demo {
+    font-size: 10px;
+    padding-top: 18px;
+}
+
+@media (max-width: 700px) {
+    .play-hud {
+        position: relative !important;
+    }
+}
+
+@media (max-width: 700px) {
+    .hud-controls {
+        order: 2;
+        width: 100%;
+        margin: 0 !important;
+    }
+}
+
+@media (max-width: 700px) {
+    .hud-value {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 0 !important;
+    }
+}
+
+@media (max-width: 700px) {
+    .hud-logout {
+        margin-left: auto;
+        padding: 0;
+    }
+}
+
+.tycoon-play .play-hud {
+    padding: 10px 20px;
+    gap: 16px;
+}
+
+.tycoon-play .play-brand {
+    font-size: 15px;
+    font-weight: 900;
+    gap: 8px;
+}
+
+.hud-mascot {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    image-rendering: pixelated;
+}
+
+.tycoon-play .hud-profile img.profile-image {
+    display: block;
+    flex: 0 0 34px;
+    width: 34px;
+    min-width: 34px;
+    max-width: 34px;
+    height: 34px;
+    min-height: 34px;
+    max-height: 34px;
+    object-fit: cover;
+}
+
+.tycoon-play .play-brand > span {
+    width: auto;
+    height: auto;
+    font-size: 15px;
+}
+
+.tycoon-play .hud-value {
+    padding: 7px 12px;
+    min-width: 94px;
+}
+
+.tycoon-play .hud-value span {
+    font-size: 11px;
+}
+
+.tycoon-play .hud-value strong {
+    font-size: 16px;
+}
+
+.tycoon-play .hud-controls {
+    gap: 10px;
+}
+
+.tycoon-play .hud-shop,
+.tycoon-play .hud-save,
+.tycoon-play .site-button,
+.tycoon-play .build-buy,
+.tycoon-play .build-open {
+    font-weight: 800;
+    transition: transform .12s, background .12s;
+}
+
+.tycoon-play .site-button:active {
+    transform: translateY(2px);
+}
+
+.tycoon-play .build-dialog {
+    width: min(390px, calc(100vw - 30px));
+    padding: 20px;
+}
+
+.tycoon-play .build-title {
+    padding-bottom: 14px;
+}
+
+.tycoon-play .build-title h2 {
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.facility-toggle {
+    margin-top: 18px;
+}
+
+.tycoon-play .build-category {
+    display: list-item;
+    cursor: pointer;
+    padding: 14px 12px;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.tycoon-play .build-category span {
+    float: right;
+    font-size: 11px;
+    font-weight: 400;
+}
+
+.facility-items {
+    padding-top: 16px;
+}
+
+.facility-toggle .facility-open {
+    display: none;
+}
+
+.facility-toggle[open] .facility-open {
+    display: inline;
+}
+
+.facility-toggle[open] .facility-closed {
+    display: none;
+}
+
+.tycoon-play .build-item h3 {
+    font-weight: 900;
+}
+
+.tycoon-play .build-open {
+    display: block;
+    padding: 9px;
+    text-align: center;
+    font-size: 12px;
+}
+
+@media (max-width: 1100px) {
+    .tycoon-play .play-hud {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+}
+
+@media (max-width: 1100px) {
+    .tycoon-play .hud-controls {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 1100px) {
+    .tycoon-play .hud-value {
+        min-width: 80px;
+    }
+}
+
+@media (max-width: 600px) {
+    .tycoon-play .play-hud {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 600px) {
+    .tycoon-play .hud-controls {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 600px) {
+    .tycoon-play .hud-controls form {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .tycoon-play .hud-save {
+        width: 100%;
+    }
+}
+
+.play-hud {
+    flex-wrap: wrap;
+}
+
+.hud-controls {
+    flex-wrap: wrap;
+}
+
+.manager-toast {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    max-width: min(420px, 90vw);
+    padding: 18px;
+    animation: manager-hop .45s ease;
+}
+
+.manager-toast img {
+    width: 65px;
+    image-rendering: pixelated;
+}
+
+@keyframes manager-hop {
+    0% { transform: translateY(30px); opacity: 0; } 70% { transform: translateY(-8px); } 100% { transform: translateY(0); opacity: 1; }
+}
+
+#gold-box[role="button"] {
+    cursor: pointer;
+}
+
+.facility-toggle + .facility-toggle {
+    margin-top: 16px;
+}

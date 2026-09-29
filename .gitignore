@@ -1,0 +1,51 @@
+## 빌드 결과와 로컬 실행 파일
+/target/
+/var/
+*.class
+*.war
+*.log
+/Start-Game.ps1
+
+## 성능·부하 측정 결과물
+/performance-test-results/
+/load-test-results/
+/benchmark-results/
+*-load-test-results.*
+*-benchmark-results.*
+*.jtl
+
+## 개인 환경 설정과 자격 증명
+/config/application-local.properties
+**/application-local.properties
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+## IDE 설정: Maven 프로젝트 파일만으로 다시 가져올 수 있습니다.
+/.classpath
+/.project
+/.settings/
+/.externalToolBuilders/
+/.springBeans
+
+## 발표자료 및 제작 중 생성된 미리보기·디자인 파일
+/tmp/
+/.ppt-build/
+/presentation-out/
+/output/
+/artifacts/
+*.ppt
+*.pptx
+Community_Tycoon_발표*.pdf
+
+## 작업 중 참고용 문서·압축본
+/community-tycoon-request.txt
+/FEATURE_UPDATE.md
+/FRONTEND_GUIDE.md
+/docs/ERD-발표준비.md
+/docs/ERD-초보자-해설.md
+/src.zip
+/src/main/webapp/resources/images/*PROMPTS.md
+

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tycoon.community.board.CommentMapper">
+    <!-- 댓글 조회와 작성자 조건이 포함된 변경 SQL입니다. -->
+    <select id="list" resultType="com.tycoon.community.board.Comment">
+        SELECT c.*, c.authorNickname AS displayName
+        FROM ct_comment c
+        WHERE c.boardId = #{boardId}
+        ORDER BY c.commentId ASC
+    </select>
+    <select id="find" resultType="com.tycoon.community.board.Comment">
+        SELECT * FROM ct_comment WHERE commentId = #{commentId} AND boardId = #{boardId}
+    </select>
+    <insert id="insert" useGeneratedKeys="true" keyProperty="commentId">
+        INSERT INTO ct_comment(boardId, authorType, authorNickname, content, authorProfileImageId)
+        VALUES(#{boardId}, #{authorType}, #{authorNickname}, #{content}, #{authorProfileImageId})
+    </insert>
+    <update id="update">
+        UPDATE ct_comment SET content = #{content}
+        WHERE commentId = #{commentId} AND boardId = #{boardId} AND authorType = 'PLAYER'
+    </update>
+    <delete id="delete">
+        DELETE FROM ct_comment WHERE commentId = #{commentId} AND boardId = #{boardId} AND authorType = 'PLAYER'
+    </delete>
+</mapper>

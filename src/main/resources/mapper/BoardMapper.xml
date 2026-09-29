@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tycoon.community.board.BoardMapper">
+    <!-- 게시글 조회·검색·페이지 처리와 NPC 게시글 정리 SQL입니다. -->
+    <select id="list" resultType="com.tycoon.community.board.Board">
+        SELECT p.*, <include refid="firstImage"/>
+        FROM ct_board p
+        WHERE p.gameDataId = #{gameDataId}
+        ORDER BY p.boardId DESC
+    </select>
+    <select id="find" resultType="com.tycoon.community.board.Board">
+
+        SELECT p.*, <include refid="firstImage"/>,
+            (SELECT COUNT(*) FROM ct_board earlier
+             WHERE earlier.gameDataId = p.gameDataId AND earlier.boardId &lt;= p.boardId) AS displayNo
+        FROM ct_board p
+        WHERE p.boardId = #{boardId} AND p.gameDataId = #{gameDataId}
+    </select>
+    <insert id="insert" useGeneratedKeys="true" keyProperty="boardId">
+        INSERT INTO ct_board (
+            gameDataId, authorType, authorNickname, title, content, createdDay, authorProfileImageId
+        ) VALUES (
+            #{gameDataId}, #{authorType}, #{authorNickname}, #{title}, #{content}, #{createdDay}, #{authorProfileImageId}
+        )
+    </insert>
+    <update id="update">
+        UPDATE ct_board
+        SET title = #{title}, content = #{content}
+        WHERE boardId = #{boardId} AND gameDataId = #{gameDataId} AND authorType = 'PLAYER'
+    </update>
+    <delete id="delete">
+        DELETE
+        FROM ct_board
+        WHERE boardId = #{boardId} AND gameDataId = #{gameDataId} AND authorType = 'PLAYER'
+    </delete>
+    <sql id="search">
+        WHERE p.gameDataId = #{gameDataId}
+        <if test="title != null and title != ''">
+            AND p.title LIKE CONCAT('%', #{title}, '%')
+        </if>
+        <if test="writer != null and writer != ''">
+            AND p.authorNickname LIKE CONCAT('%', #{writer}, '%')
+        </if>
+    </sql>
+
+    <select id="getCount" resultType="int">
+        SELECT COUNT(*) FROM ct_board p <include refid="search"/>
+    </select>
+    <select id="selectPage" resultType="com.tycoon.community.board.Board">
+        SELECT p.*, <include refid="firstImage"/>,
+            (SELECT COUNT(*) FROM ct_board earlier
+             WHERE earlier.gameDataId = p.gameDataId AND earlier.boardId &lt;= p.boardId) AS displayNo
+        FROM ct_board p
+        <include refid="search"/>
+        ORDER BY p.boardId DESC
+        <if test="paging">LIMIT #{skip}, #{size}</if>
+    </select>
+    <sql id="firstImage">
+        (SELECT CONCAT('/files/', u.uploadId) FROM ct_board_attachment a
+         JOIN ct_upload u ON u.uploadId = a.uploadId
+         WHERE a.boardId = p.boardId AND u.contentType IN ('image/png', 'image/jpeg', 'image/gif')
+         ORDER BY u.uploadId LIMIT 1) AS firstImageUrl
+    </sql>
+    <!-- LIMIT이 있는 파생 테이블로 삭제 대상 테이블의 직접 서브쿼리(1093)를 피합니다. -->
+    <sql id="npcCutoff">
+        (SELECT retained.boardId FROM (
+            SELECT boardId FROM ct_board WHERE gameDataId = #{gameDataId} AND authorType = 'NPC'
+            ORDER BY boardId DESC LIMIT 1 OFFSET 99
+        ) retained)
+    </sql>
+    <delete id="deleteOldNpcComments">
+        DELETE c FROM ct_comment c JOIN ct_board p ON p.boardId = c.boardId
+        WHERE p.gameDataId = #{gameDataId} AND p.authorType = 'NPC' AND p.boardId &lt; <include refid="npcCutoff"/>
+    </delete>
+    <delete id="deleteOldNpcPosts">
+        DELETE FROM ct_board WHERE gameDataId = #{gameDataId} AND authorType = 'NPC'
+        AND boardId &lt; <include refid="npcCutoff"/>
+    </delete>
+</mapper>

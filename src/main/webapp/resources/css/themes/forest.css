@@ -1,0 +1,152 @@
+/* 위스터리아 빌리지 팔레트·배경·장식과 테마 전용 배치 */
+html[data-theme="forest"] .attachment-box,
+html[data-theme="forest"] .post-image-preview { background: #f4f8eb; border-color: #a8bd99; }
+html[data-theme="forest"] {
+    --forest-ink: #304d3b; --forest-green: #467454; --forest-line: #99b29a; --forest-paper: #fffcf0;
+}
+
+html[data-theme="forest"] body {
+    background-color: #eaf0e4; color: var(--forest-ink);
+}
+
+html[data-theme="forest"] body.game-title-screen {
+    background: #dce9d4 url('../../images/community-forest-login-v2.png') center top / cover fixed no-repeat;
+}
+
+html[data-theme="forest"] .game-title-screen .game-logo {
+    display: none;
+}
+
+html[data-theme="forest"] .title-screen-content {
+    justify-content: flex-start; padding-top: 35vh;
+}
+
+html[data-theme="forest"] .title-menu {
+    background: rgba(255, 252, 240, .95); border: 2px solid #64846a; box-shadow: 0 6px 0 #355d4270, 0 15px 45px #233e3a40; border-radius: 22px;
+}
+
+html[data-theme="forest"] .play-hud {
+    background: #e2efdb; border-color: #688974; box-shadow: 0 4px 0 #bdd0b7;
+}
+
+html[data-theme="forest"] .play-brand,
+html[data-theme="forest"] .hud-profile {
+    color: var(--forest-ink);
+}
+
+html[data-theme="forest"] .site-workspace {
+    background: #eef3e9;
+}
+
+html[data-theme="forest"] .site-canvas {
+    background: #fffef7;
+}
+
+html[data-theme="forest"] .build-dialog,
+html[data-theme="forest"] .profile-page .card,
+html[data-theme="forest"] .post-detail,
+html[data-theme="forest"] .comment-section,
+html[data-theme="forest"] .editor-form {
+    background: var(--forest-paper); border: 2px solid var(--forest-line); color: var(--forest-ink); border-radius: 16px; box-shadow: 0 4px 0 #d9e5ce;
+}
+
+html[data-theme="forest"] .build-item {
+    background: #f4f8ec; border-color: #b5c9a9; border-radius: 14px;
+}
+
+html[data-theme="forest"] .build-category,
+html[data-theme="forest"] .build-footer,
+html[data-theme="forest"] .manager-quote {
+    border-color: #b5c9a9; color: var(--forest-ink);
+}
+
+html[data-theme="forest"] .build-title h2,
+html[data-theme="forest"] .build-item h3,
+html[data-theme="forest"] .build-item p,
+html[data-theme="forest"] .live-board-heading h1,
+html[data-theme="forest"] .title-menu h2 {
+    color: var(--forest-ink);
+}
+
+html[data-theme="forest"] .btn,
+html[data-theme="forest"] .hud-shop,
+html[data-theme="forest"] .hud-save {
+    border: 2px solid #54775c; border-radius: 9px; box-shadow: 0 3px 0 #8cab82; background: #e3eed5; color: #304f3a;
+}
+
+html[data-theme="forest"] .btn-primary,
+html[data-theme="forest"] .build-buy,
+html[data-theme="forest"] .hud-save {
+    background: #567f57; color: #fffce9;
+}
+
+html[data-theme="forest"] .btn:disabled {
+    background: #dce2d6; color: #7b8878;
+}
+
+html[data-theme="forest"] .form-control,
+html[data-theme="forest"] .form-select {
+    border-color: #b5c9a9; background: #fffef7; color: var(--forest-ink);
+}
+
+html[data-theme="forest"] .hud-value {
+    background: #f9fae9; border-color: #a2ba95; box-shadow: 0 2px 0 #cfddc6;
+}
+
+html[data-theme="forest"] .hud-money {
+    background: #fff0b7; border-color: #d7b76a;
+}
+
+html[data-theme="forest"] .hud-visitors {
+    background: #eee3f5; border-color: #b9a2cc;
+}
+
+html[data-theme="forest"] .hud-value strong,
+html[data-theme="forest"] .hud-value span {
+    color: #40583e;
+}
+
+html[data-theme="forest"] .live-board-heading {
+    border-color: #aac59b;
+}
+
+html[data-theme="forest"] .live-board-table {
+    --bs-table-bg: transparent; --bs-table-color: #304d3b; --bs-table-hover-bg: #e5efdd;
+}
+
+html[data-theme="forest"] .live-board-table th {
+    background: #dcead3; color: #304d3b;
+}
+
+html[data-theme="forest"] .live-board-table td {
+    border-color: #d6e1cc;
+}
+
+html[data-theme="forest"] a {
+    color: #426e50;
+}
+
+html[data-theme="forest"] .writer-label {
+    background: #ebe0f1; color: #84679b;
+}
+
+html[data-theme="forest"] .manager-toast {
+    background: #fff0bc; border-color: #71885e; color: #415237;
+}
+
+html[data-theme="forest"] .attachment-thumb,
+html[data-theme="forest"] .profile-image-storage-choice {
+    border-color: #a8bd99; background: #f4f8eb;
+}
+
+@media (max-width: 700px) {
+    html[data-theme="forest"] body.game-title-screen {
+        background-size: 100% auto; background-attachment: scroll;
+    }
+}
+
+@media (max-width: 700px) {
+    html[data-theme="forest"] .title-screen-content {
+        padding-top: 36vw;
+    }
+}

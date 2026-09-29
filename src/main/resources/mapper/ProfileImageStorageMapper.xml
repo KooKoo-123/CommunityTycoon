@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tycoon.community.user.ProfileImageStorageMapper">
+    <!-- 사용자가 보관한 프로필 사진 이력을 관리하는 SQL입니다. -->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="profileImageStorageId">
+        INSERT INTO ct_profile_image_storage(uploadId)
+        VALUES(#{uploadId})
+    </insert>
+    <select id="list" resultType="com.tycoon.community.user.ProfileImageStorage">
+        SELECT h.*, u.objectKey
+        FROM ct_profile_image_storage h JOIN ct_upload u ON u.uploadId = h.uploadId
+        WHERE u.userId = #{userId} AND h.deleted = FALSE ORDER BY h.profileImageStorageId DESC
+    </select>
+    <select id="find" resultType="com.tycoon.community.user.ProfileImageStorage">
+        SELECT h.*, u.objectKey
+        FROM ct_profile_image_storage h JOIN ct_upload u ON u.uploadId = h.uploadId
+        WHERE h.profileImageStorageId = #{profileImageStorageId}
+          AND u.userId = #{userId} AND h.deleted = FALSE
+    </select>
+    <update id="delete">
+        UPDATE ct_profile_image_storage h
+        JOIN ct_upload u ON u.uploadId = h.uploadId
+        SET h.deleted = TRUE
+        WHERE h.profileImageStorageId = #{profileImageStorageId}
+          AND u.userId = #{userId} AND h.deleted = FALSE
+    </update>
+</mapper>

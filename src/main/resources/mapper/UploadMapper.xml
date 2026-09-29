@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tycoon.community.upload.UploadMapper">
+    <!-- 업로드 기록과 게시글 첨부 연결, S3 삭제 대기열을 처리하는 SQL입니다. -->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="uploadId">
+        INSERT INTO ct_upload(userId, objectKey, originalName, contentType, fileSize, category)
+        VALUES(#{userId}, #{objectKey}, #{originalName}, #{contentType}, #{fileSize}, #{category})
+    </insert>
+    <select id="find" resultType="com.tycoon.community.upload.UploadFile">
+        SELECT * FROM ct_upload WHERE uploadId = #{uploadId}
+    </select>
+    <select id="attachments" resultType="com.tycoon.community.upload.UploadFile">
+        SELECT u.* FROM ct_upload u JOIN ct_board_attachment a ON a.uploadId = u.uploadId
+        WHERE a.boardId = #{boardId} ORDER BY u.uploadId
+    </select>
+
+    <insert id="link">
+        INSERT INTO ct_board_attachment(boardId, uploadId) VALUES(#{boardId}, #{uploadId})
+    </insert>
+
+    <delete id="unlink">
+        DELETE FROM ct_board_attachment WHERE boardId = #{boardId} AND uploadId = #{uploadId}
+    </delete>
+
+    <insert id="enqueueDeletion">
+        INSERT IGNORE INTO ct_s3_deletion(objectKey)
+        SELECT objectKey FROM ct_upload u WHERE u.uploadId = #{uploadId} AND u.category = 'attachment'
+        AND NOT EXISTS (SELECT 1 FROM ct_board_attachment a WHERE a.uploadId = u.uploadId)
+    </insert>
+
+    <delete id="deleteDetached">
+        DELETE FROM ct_upload WHERE uploadId = #{uploadId} AND category = 'attachment'
+        AND NOT EXISTS (SELECT 1 FROM ct_board_attachment a WHERE a.uploadId = ct_upload.uploadId)
+    </delete>
+
+    <select id="pendingDeletions" resultType="string">
+        SELECT objectKey FROM ct_s3_deletion ORDER BY createdAt, objectKey LIMIT 100
+    </select>
+
+    <delete id="completeDeletion">
+        DELETE FROM ct_s3_deletion WHERE objectKey = #{objectKey}
+    </delete>
+</mapper>

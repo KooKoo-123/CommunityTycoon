@@ -1,0 +1,74 @@
+/* 공통 글꼴·기본 요소·삭제 버튼 */
+body {
+    font-family: "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+    font-size: 14px;
+    line-height: 1.65;
+}
+
+a {
+    text-decoration: none;
+}
+
+button,
+input,
+textarea {
+    font: inherit;
+}
+
+h1 {
+    font-size: 30px;
+    font-weight: 750;
+    letter-spacing: -1px;
+}
+
+h2 {
+    font-size: 21px;
+    font-weight: 700;
+}
+
+h3 {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.eyebrow {
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+}
+
+.back-link {
+    font-size: 12px;
+}
+
+.error-page {
+    max-width: 650px;
+}
+
+.tycoon-play .btn {
+    font-weight: 800;
+    transition: transform .12s, background .12s;
+}
+
+.tycoon-play button:active:not(:disabled) {
+    transform: translateY(2px);
+}
+
+[hidden] {
+    display: none !important;
+}
+
+.account-switch input[type="radio"] {
+    width: auto;
+    padding: 0;
+    margin-right: 5px;
+}
+
+.remove-button {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 27px;
+    height: 27px;
+    font-weight: bold;
+}

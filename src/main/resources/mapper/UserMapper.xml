@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tycoon.community.user.UserMapper">
+    <!-- 회원 계정과 비밀번호, 권한을 조회·변경하는 SQL입니다. -->
+    <select id="findByLoginId" resultType="com.tycoon.community.user.User">
+        SELECT *
+        FROM ct_user
+        WHERE loginId=#{loginId}
+    </select>
+    <select id="findByUserId" resultType="com.tycoon.community.user.User">
+        SELECT *
+        FROM ct_user
+        WHERE userId=#{userId}
+    </select>
+    <insert id="insert" useGeneratedKeys="true" keyProperty="userId">
+        INSERT INTO ct_user (loginId, password)
+        VALUES (#{loginId}, #{password})
+    </insert>
+    <update id="updatePassword">
+        UPDATE ct_user SET password = #{password} WHERE userId = #{userId}
+    </update>
+</mapper>
